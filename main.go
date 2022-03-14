@@ -8,6 +8,8 @@ import (
 )
 
 func main() {
+	events := []string{"Preparing", "Planned Reboot", "PXE Booting", "Preparing", "Registering", "Waiting", "Installing", "Booting New Kernel", "Phoned Home"}
+
 	m := fsm.NewFSM(
 		"PXE Booting",
 		fsm.Events{
@@ -36,13 +38,18 @@ func main() {
 			},
 		},
 	)
-
-	err := m.Event("Phoned Home")
-	if err != nil {
-		fmt.Println("Unexpected Successor")
-	}
+	readSequence(m, events)
 
 	visualize(m)
+}
+
+func readSequence(m *fsm.FSM, eventSequence []string) {
+	for _, event := range eventSequence {
+		err := m.Event(event)
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
 }
 
 func visualize(m *fsm.FSM) {
