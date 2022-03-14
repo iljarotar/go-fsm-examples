@@ -1,0 +1,31 @@
+digraph fsm {
+    "PXE Booting" -> "PXE Booting" [ label = "PXE Booting" ];
+    "PXE Booting" -> "Preparing" [ label = "Preparing" ];
+    "Booting New Kernel" -> "Phoned Home" [ label = "Phoned Home" ];
+    "Crashed" -> "PXE Booting" [ label = "PXE Booting" ];
+    "Crashed" -> "Preparing" [ label = "Preparing" ];
+    "Installing" -> "Booting New Kernel" [ label = "Booting New Kernel" ];
+    "Installing" -> "Planned Reboot" [ label = "Planned Reboot" ];
+    "Phoned Home" -> "PXE Booting" [ label = "PXE Booting" ];
+    "Phoned Home" -> "Preparing" [ label = "Preparing" ];
+    "Planned Reboot" -> "PXE Booting" [ label = "PXE Booting" ];
+    "Planned Reboot" -> "Preparing" [ label = "Preparing" ];
+    "Preparing" -> "Planned Reboot" [ label = "Planned Reboot" ];
+    "Preparing" -> "Registering" [ label = "Registering" ];
+    "Registering" -> "Planned Reboot" [ label = "Planned Reboot" ];
+    "Registering" -> "Waiting" [ label = "Waiting" ];
+    "Reset Fail Count" -> "PXE Booting" [ label = "PXE Booting" ];
+    "Waiting" -> "Installing" [ label = "Installing" ];
+    "Waiting" -> "Planned Reboot" [ label = "Planned Reboot" ];
+
+    "Booting New Kernel";
+    "Crashed";
+    "Installing";
+    "PXE Booting";
+    "Phoned Home";
+    "Planned Reboot";
+    "Preparing";
+    "Registering";
+    "Reset Fail Count";
+    "Waiting";
+}
